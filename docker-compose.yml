@@ -1,12 +1,13 @@
+version: "3.8"
+
 services:
   app:
-    image: mcr.microsoft.com/devcontainers/javascript-node:1-18-bullseye
-    command: bash -c 'npm install && npm start'
-    working_dir: /app
-    network_mode: service:mysql
+    image: mcr.microsoft.com/devcontainers/javascript-node:18-bullseye
     volumes:
-      - ./package.json:/app/package.json
-      - ./app.js:/app/app.js
+      - ..:/workspaces/${localWorkspaceFolderBasename}:cached
+    working_dir: /workspaces/${localWorkspaceFolderBasename}
+    command: sleep infinity
+    network_mode: service:mysql
     depends_on:
       - mysql
 
